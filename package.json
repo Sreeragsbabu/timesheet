@@ -10,7 +10,12 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "seed": "node src/scripts/seed.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:routes": "jest tests/routes",
+    "test:services": "jest tests/services",
+    "test:unit": "jest tests/services tests/controllers"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -22,6 +27,9 @@
     "mongoose": "^8.20.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.11"
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^10.3.0",
+    "nodemon": "^3.1.11",
+    "supertest": "^7.1.4"
   }
 }
