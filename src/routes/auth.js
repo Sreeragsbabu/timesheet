@@ -4,24 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-
-//register
-router.post('/register', async(req, res)=> {
-    try{
-        console.log(req.body);
-        const {name, email, password, empId, role} = req.body;
-        const existing = await User.findOne({ email });
-        if(existing){
-            return res.status(400).send({ error: 'email exists' });
-        }
-        const hash = await bcrypt.hash(password, 10);
-        const user = new User({ name, email, passwordHash: hash, role, empId });
-        const savedUser = await user.save();
-        res.send({ savedUser: savedUser });
-    }catch(e){
-        res.status(500).send({ error: e.message });
-    }
-});
+router.post('/register', require("../routes/auth/register"));
 
 //login
 router.post('/login', async(req, res) => {
